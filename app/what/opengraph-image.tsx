@@ -6,7 +6,7 @@ export const contentType = ogContentType;
 
 export default function Image() {
   return renderOg({
-    eyebrow: "02 · WHAT",
+    eyebrow: "WHAT",
     title: "Corporate law, exclusively. Six disciplines, one focus.",
   });
 }

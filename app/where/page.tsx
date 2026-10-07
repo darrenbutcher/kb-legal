@@ -63,7 +63,7 @@ export default function WherePage() {
       />
 
       <PageHero
-        eyebrow={<Eyebrow>04 · WHERE</Eyebrow>}
+        eyebrow={<Eyebrow>WHERE</Eyebrow>}
         title="Tell us about your matter."
         intro={
           <p className="m-0">

@@ -48,7 +48,7 @@ export default function WhyPage() {
       <JsonLd data={breadcrumbJsonLd([{ name: "Why", path: "/why" }])} />
 
       <PageHero
-        eyebrow={<Eyebrow>03 · WHY</Eyebrow>}
+        eyebrow={<Eyebrow>WHY</Eyebrow>}
         title={
           <>
             The quality of a large firm.{" "}

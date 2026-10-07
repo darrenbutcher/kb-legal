@@ -115,7 +115,7 @@ export default function WhoPage() {
       />
 
       <PageHero
-        eyebrow={<Eyebrow>01 · WHO</Eyebrow>}
+        eyebrow={<Eyebrow>WHO</Eyebrow>}
         title="Kamla Besançon"
         subtitle="FOUNDER · CORPORATE & SECURITIES · M&A"
         intro={

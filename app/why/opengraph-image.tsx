@@ -6,7 +6,7 @@ export const contentType = ogContentType;
 
 export default function Image() {
   return renderOg({
-    eyebrow: "03 · WHY",
+    eyebrow: "WHY",
     title: "The quality of a large firm. The attention of a boutique.",
   });
 }

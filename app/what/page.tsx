@@ -83,7 +83,7 @@ export default function WhatPage() {
       />
 
       <PageHero
-        eyebrow={<Eyebrow>02 · WHAT</Eyebrow>}
+        eyebrow={<Eyebrow>WHAT</Eyebrow>}
         title={
           <>
             We do one thing, and we do it well –{" "}

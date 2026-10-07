@@ -6,7 +6,7 @@ export const contentType = ogContentType;
 
 export default function Image() {
   return renderOg({
-    eyebrow: "04 · WHERE",
+    eyebrow: "WHERE",
     title: "Tell us about your matter. 28a Front Street, Philipsburg.",
   });
 }

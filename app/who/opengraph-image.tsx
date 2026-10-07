@@ -6,7 +6,7 @@ export const contentType = ogContentType;
 
 export default function Image() {
   return renderOg({
-    eyebrow: "01 · WHO",
+    eyebrow: "WHO",
     title:
       "Kamla Besançon – corporate lawyer, Dutch Caribbean · Amsterdam · New York.",
   });

@@ -23,28 +23,24 @@ const credentials = [
 
 const pillars: {
   id: string;
-  index: string;
   label: string;
   heading: ReactNode;
   body: string;
 }[] = [
   {
     id: "who",
-    index: "01",
     label: "WHO",
     heading: "Big-firm training. Local understanding.",
     body: "KB Legal's founder, Kamla Besançon, is a corporate lawyer with a broad corporate and securities practice. She has a specific focus on mergers and acquisitions and regularly advises clients on joint ventures, corporate structuring, corporate governance and board room dynamics.",
   },
   {
     id: "what",
-    index: "02",
     label: "WHAT",
     heading: "Corporate law, exclusively.",
     body: "At KB Legal we are not generalists. We focus exclusively on our expertise: corporate law. To safeguard the quality, focus, responsiveness and integrity KB Legal stands for, we are selective about the matters we undertake.",
   },
   {
     id: "why",
-    index: "03",
     label: "WHY",
     heading: (
       <>
@@ -239,9 +235,6 @@ export default function Home() {
                 }`}
               >
                 <div className="flex flex-[1_1_220px] flex-col gap-2.5">
-                  <span className="font-mono text-[13px] text-muted">
-                    {pillar.index}
-                  </span>
                   <span className="font-mono text-[15px] font-medium tracking-[0.18em] text-navy">
                     {pillar.label}
                   </span>
