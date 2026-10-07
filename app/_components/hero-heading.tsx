@@ -16,7 +16,11 @@ export function HeroHeading({ className = "" }: { className?: string }) {
       ))}{" "}
       <em className="hero-emphasis font-normal italic">
         {emphasis.map((word, i) => (
-          <Word key={i} index={lead.length + i} last={i === emphasis.length - 1}>
+          <Word
+            key={i}
+            index={lead.length + i}
+            last={i === emphasis.length - 1}
+          >
             {word}
           </Word>
         ))}

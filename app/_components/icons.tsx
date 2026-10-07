@@ -8,6 +8,7 @@ export {
   Mail as MailIcon,
   MapPin as PinIcon,
   Phone as PhoneIcon,
+  UserRound as PersonIcon,
 } from "lucide-react";
 
 // lucide no longer ships brand marks, so the LinkedIn glyph is drawn here in

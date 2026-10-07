@@ -1,14 +1,14 @@
+import Link from "next/link";
 import type { CSSProperties, ReactNode } from "react";
 import { HeroHeading } from "./_components/hero-heading";
-import { RevealOnScroll } from "./_components/reveal-on-scroll";
-import { SiteFooter } from "./_components/site-footer";
-import { SiteHeader } from "./_components/site-header";
 import {
   ArrowRightIcon,
   CalendarIcon,
   MailIcon,
   PhoneIcon,
 } from "./_components/icons";
+import { JsonLd } from "./_components/ui";
+import { founderId, organizationId } from "./_lib/seo";
 import { site } from "./_lib/site";
 
 const credentials = [
@@ -85,7 +85,7 @@ const experience = [
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "LegalService",
-  "@id": `${site.url}/#organization`,
+  "@id": organizationId,
   name: site.name,
   url: site.url,
   logo: `${site.url}/kb-legal-logo-color.svg`,
@@ -117,6 +117,7 @@ const jsonLd = {
   },
   founder: {
     "@type": "Person",
+    "@id": founderId,
     name: "Kamla Besançon",
     jobTitle: "Founder, Corporate Lawyer",
     alumniOf: ["Leiden University", "Columbia University"],
@@ -146,13 +147,7 @@ function Rule({ className = "" }: { className?: string }) {
 export default function Home() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
-        }}
-      />
-      <SiteHeader />
+      <JsonLd data={jsonLd} />
 
       <main className="w-full bg-ivory">
         {/* Hero */}
@@ -175,10 +170,13 @@ export default function Home() {
                 className="hero-fade mt-11 flex flex-wrap gap-4"
                 style={{ "--delay": "900ms" } as CSSProperties}
               >
-                <a href="#book" className={`${primaryButton} px-7 py-4`}>
+                <Link
+                  href={site.bookPath}
+                  className={`${primaryButton} px-7 py-4`}
+                >
                   <CalendarIcon />
                   Book a consultation
-                </a>
+                </Link>
                 <a
                   href={`mailto:${site.email}`}
                   className="inline-flex items-center gap-2.5 rounded-md border border-navy bg-transparent px-[27px] py-[15px] text-base font-medium text-navy no-underline transition-colors duration-300 hover:bg-navy/5 hover:text-navy"
@@ -252,10 +250,10 @@ export default function Home() {
                     {pillar.heading}
                   </h2>
                   <p className="m-0 mb-6 text-body">{pillar.body}</p>
-                  <a href={`#${pillar.id}`} className={textLink}>
+                  <Link href={`/${pillar.id}`} className={textLink}>
                     Read more
                     {textLinkArrow}
-                  </a>
+                  </Link>
                 </div>
               </article>
             ))}
@@ -282,10 +280,10 @@ export default function Home() {
                   From Saba to Euronext Amsterdam.
                 </h2>
               </div>
-              <a href="#what" className={textLink}>
+              <Link href="/what/experience" className={textLink}>
                 View all experience
                 {textLinkArrow}
-              </a>
+              </Link>
             </div>
 
             <ul className="m-0 grid list-none grid-cols-[repeat(auto-fit,minmax(260px,1fr))] gap-6 p-0">
@@ -345,18 +343,17 @@ export default function Home() {
               </p>
             </div>
             <div
-              id="book"
               data-reveal
               className="flex flex-[1_1_300px] flex-col gap-3"
               style={{ "--delay": "150ms" } as CSSProperties}
             >
-              <a
-                href={`mailto:${site.email}?subject=${encodeURIComponent("Consultation request")}`}
+              <Link
+                href={site.bookPath}
                 className={`${primaryButton} justify-center px-7 py-[18px]`}
               >
                 <CalendarIcon />
                 Book a consultation
-              </a>
+              </Link>
               <div className="flex flex-wrap justify-center gap-x-6 gap-y-1">
                 <a
                   href={`mailto:${site.email}`}
@@ -377,9 +374,6 @@ export default function Home() {
           </div>
         </section>
       </main>
-
-      <SiteFooter />
-      <RevealOnScroll />
     </>
   );
 }

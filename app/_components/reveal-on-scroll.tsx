@@ -1,11 +1,15 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 
 // Marks every [data-reveal] element as visible the first time it scrolls into
-// view. The hidden starting state only applies once the `js` class is on
-// <html>, so content is never hidden when scripts don't run.
+// view, re-scanning after each client-side navigation. The hidden starting
+// state only applies once the `js` class is on <html>, so content is never
+// hidden when scripts don't run.
 export function RevealOnScroll() {
+  const pathname = usePathname();
+
   useEffect(() => {
     const targets = document.querySelectorAll<HTMLElement>(
       "[data-reveal]:not(.is-visible)",
@@ -28,7 +32,7 @@ export function RevealOnScroll() {
     );
     targets.forEach((el) => observer.observe(el));
     return () => observer.disconnect();
-  }, []);
+  }, [pathname]);
 
   return null;
 }

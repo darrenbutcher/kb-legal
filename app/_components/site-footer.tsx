@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { site } from "../_lib/site";
+import { nav, site } from "../_lib/site";
 import {
   CalendarIcon,
   ClockIcon,
@@ -10,8 +10,7 @@ import {
   PinIcon,
 } from "./icons";
 
-const eyebrow =
-  "font-mono text-xs tracking-[0.16em] text-mist-dim";
+const eyebrow = "font-mono text-xs tracking-[0.16em] text-mist-dim";
 const footerLink = "py-1 text-white no-underline hover:text-white";
 const contactLink =
   "inline-flex items-center gap-3 py-[5px] text-white no-underline hover:text-white";
@@ -23,11 +22,7 @@ export function SiteFooter() {
       <div className="mx-auto flex max-w-[1240px] flex-col gap-14 px-6 pt-[72px] pb-12">
         <div className="flex flex-wrap items-start justify-between gap-x-16 gap-y-10 border-b border-white/12 pb-14">
           <div className="flex min-w-0 flex-[1_1_320px] flex-col gap-5">
-            <Link
-              href="/"
-              aria-label="KB Legal home"
-              className="inline-flex"
-            >
+            <Link href="/" aria-label="KB Legal home" className="inline-flex">
               <Image
                 src="/kb-legal-logo-white.svg"
                 alt="KB Legal"
@@ -38,8 +33,7 @@ export function SiteFooter() {
               />
             </Link>
             <span className="max-w-[340px] font-serif text-lg leading-normal italic text-white">
-              Highly specialized corporate legal support in the Dutch
-              Caribbean.
+              Highly specialized corporate legal support in the Dutch Caribbean.
             </span>
           </div>
 
@@ -86,27 +80,29 @@ export function SiteFooter() {
         <div className="grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-10">
           <nav aria-label="Footer" className="flex flex-col gap-1.5">
             <span className={`${eyebrow} mb-2`}>NAVIGATE</span>
-            <a href="#who" className={footerLink}>
-              WHO
-            </a>
-            <a href="#what" className={footerLink}>
-              WHAT
-            </a>
-            <a href="#experience" className={footerLink}>
+            {nav.slice(0, 2).map((link) => (
+              <Link key={link.href} href={link.href} className={footerLink}>
+                {link.label}
+              </Link>
+            ))}
+            <Link href="/what/experience" className={footerLink}>
               Experience
-            </a>
-            <a href="#why" className={footerLink}>
-              WHY
-            </a>
-            <a href="#where" className={footerLink}>
-              WHERE
-            </a>
+            </Link>
+            {nav.slice(2).map((link) => (
+              <Link key={link.href} href={link.href} className={footerLink}>
+                {link.label}
+              </Link>
+            ))}
           </nav>
 
           <div className="flex flex-col gap-3.5">
             <span className={eyebrow}>OFFICE</span>
             <address className="flex items-start gap-3 not-italic">
-              <PinIcon size={20} strokeWidth={1.5} className={`${sageIcon} mt-[3px]`} />
+              <PinIcon
+                size={20}
+                strokeWidth={1.5}
+                className={`${sageIcon} mt-[3px]`}
+              />
               <div className="flex flex-col text-white">
                 <span>{site.address.street}</span>
                 <span>
@@ -115,7 +111,11 @@ export function SiteFooter() {
               </div>
             </address>
             <div className="flex items-start gap-3">
-              <ClockIcon size={20} strokeWidth={1.5} className={`${sageIcon} mt-[3px]`} />
+              <ClockIcon
+                size={20}
+                strokeWidth={1.5}
+                className={`${sageIcon} mt-[3px]`}
+              />
               <div className="flex flex-col">
                 <span className="text-white">Monday – Friday</span>
                 <span>9:00 am – 6:00 pm</span>
@@ -125,10 +125,10 @@ export function SiteFooter() {
 
           <div className="flex flex-col gap-1.5">
             <span className={`${eyebrow} mb-2`}>CONTACT</span>
-            <a href="#book" className={contactLink}>
+            <Link href={site.bookPath} className={contactLink}>
               <CalendarIcon size={20} strokeWidth={1.5} className={sageIcon} />
               Book a consultation
-            </a>
+            </Link>
             <a href={site.phoneHref} className={contactLink}>
               <PhoneIcon size={20} strokeWidth={1.5} className={sageIcon} />
               {site.phone}
@@ -151,8 +151,8 @@ export function SiteFooter() {
 
         <div className="flex flex-wrap justify-between gap-x-6 gap-y-3 border-t border-white/12 pt-7 text-[13px] text-mist-dim">
           <span>
-            The content of this website is for general information only and
-            does not constitute legal advice.
+            The content of this website is for general information only and does
+            not constitute legal advice.
           </span>
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
             <span>© 2026 KB Legal. All rights reserved.</span>

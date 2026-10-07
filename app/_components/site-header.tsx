@@ -2,17 +2,13 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { nav, site } from "../_lib/site";
 import { CalendarIcon } from "./icons";
 
-const navLinks = [
-  { href: "#who", label: "WHO" },
-  { href: "#what", label: "WHAT" },
-  { href: "#why", label: "WHY" },
-  { href: "#where", label: "WHERE" },
-];
-
 export function SiteHeader() {
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -46,22 +42,31 @@ export function SiteHeader() {
           aria-label="Main"
           className="flex flex-wrap items-center gap-x-9 gap-y-2"
         >
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="py-3 font-mono text-sm tracking-[0.16em] text-ink no-underline"
-            >
-              {link.label}
-            </a>
-          ))}
-          <a
-            href="#book"
-            className="inline-flex items-center gap-2.5 rounded-md bg-navy px-[22px] py-3 text-[15px] font-medium text-white no-underline hover:text-white"
+          {nav.map((link) => {
+            const active =
+              pathname === link.href || pathname.startsWith(`${link.href}/`);
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                aria-current={active ? "page" : undefined}
+                className={`border-b-2 pt-3 pb-2.5 font-mono text-sm tracking-[0.16em] no-underline transition-colors duration-300 ${
+                  active
+                    ? "border-sage font-medium text-navy"
+                    : "border-transparent text-ink hover:border-sage/60"
+                }`}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
+          <Link
+            href={site.bookPath}
+            className="inline-flex items-center gap-2.5 rounded-md bg-navy px-[22px] py-3 text-[15px] font-medium text-white no-underline transition-colors duration-300 hover:bg-navy-deep hover:text-white"
           >
             <CalendarIcon size={17} strokeWidth={1.75} />
             Book a consultation
-          </a>
+          </Link>
         </nav>
       </div>
     </header>
