@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
-import { CalendarIcon, LinkedInIcon, PersonIcon } from "../_components/icons";
+import { CalendarIcon, LinkedInIcon } from "../_components/icons";
 import {
   ClosingCta,
   Eyebrow,
@@ -91,6 +92,7 @@ const personJsonLd = {
   jobTitle: "Founder, Corporate Lawyer",
   url: `${site.url}/who`,
   worksFor: { "@id": organizationId },
+  image: `${site.url}/kamla_photo.jpg`,
   sameAs: [site.founderLinkedin],
   alumniOf: [
     { "@type": "CollegeOrUniversity", name: "Leiden University" },
@@ -128,12 +130,17 @@ export default function WhoPage() {
         aside={
           <figure
             className="hero-panel m-0 min-w-0 max-w-[440px] flex-[1_1_340px]"
-            aria-label="Portrait of Kamla Besançon"
           >
             <div className="h-[22px] rounded-t-xl border-[1.5px] border-b-0 border-navy" />
-            {/* TODO: replace with the founder portrait (4:5). */}
-            <div className="flex aspect-[4/5] items-center justify-center rounded-b-xl bg-sand-deep text-muted">
-              <PersonIcon size={56} strokeWidth={1.1} aria-hidden="true" />
+            <div className="relative aspect-[4/5] overflow-hidden rounded-b-xl bg-sand-deep">
+              <Image
+                src="/kamla_photo.jpg"
+                alt="Kamla Besançon, founder of KB Legal"
+                fill
+                priority
+                sizes="(min-width: 1024px) 440px, (min-width: 640px) 60vw, 100vw"
+                className="object-cover object-[55%_center]"
+              />
             </div>
             <figcaption className="mt-3.5 text-sm text-muted">
               Kamla Besançon, founder of KB Legal
