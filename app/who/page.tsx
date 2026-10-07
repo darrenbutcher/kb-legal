@@ -131,8 +131,7 @@ export default function WhoPage() {
           <figure
             className="hero-panel m-0 min-w-0 max-w-[440px] flex-[1_1_340px]"
           >
-            <div className="h-[22px] rounded-t-xl border-[1.5px] border-b-0 border-navy" />
-            <div className="relative aspect-[4/5] overflow-hidden rounded-b-xl bg-sand-deep">
+            <div className="relative aspect-[4/5] overflow-hidden rounded-xl bg-sand-deep">
               <Image
                 src="/kamla_photo.jpg"
                 alt="Kamla Besançon, founder of KB Legal"
