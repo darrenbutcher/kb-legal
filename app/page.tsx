@@ -100,6 +100,7 @@ const jsonLd = {
     addressLocality: site.address.city,
     addressCountry: site.address.countryCode,
   },
+  sameAs: [site.linkedin],
   areaServed: ["Sint Maarten", "Dutch Caribbean", "Caribbean Netherlands"],
   knowsAbout: [
     "Corporate law",
@@ -118,6 +119,7 @@ const jsonLd = {
   founder: {
     "@type": "Person",
     "@id": founderId,
+    sameAs: [site.founderLinkedin],
     name: "Kamla Besançon",
     jobTitle: "Founder, Corporate Lawyer",
     alumniOf: ["Leiden University", "Columbia University"],

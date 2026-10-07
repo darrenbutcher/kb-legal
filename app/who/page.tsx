@@ -91,6 +91,7 @@ const personJsonLd = {
   jobTitle: "Founder, Corporate Lawyer",
   url: `${site.url}/who`,
   worksFor: { "@id": organizationId },
+  sameAs: [site.founderLinkedin],
   alumniOf: [
     { "@type": "CollegeOrUniversity", name: "Leiden University" },
     { "@type": "CollegeOrUniversity", name: "Columbia University" },

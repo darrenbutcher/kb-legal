@@ -10,12 +10,12 @@ export const site = {
   email,
   phone: "+1 721 542-4171",
   phoneHref: "tel:+17215424171",
-  linkedin: "#",
+  linkedin: "https://www.linkedin.com/company/kblegal",
   // TODO: add the Chamber of Commerce registration number; it appears on the
   // disclaimer once set.
   chamberOfCommerce: "",
   legalUpdated: "2026-10-07",
-  founderLinkedin: "#",
+  founderLinkedin: "https://www.linkedin.com/in/kamla-besan%C3%A7on-b06189",
   // Every "Book a consultation" button leads here.
   bookPath: "/where#book",
   // TODO: replace with Kamla's scheduling link (e.g. Calendly) once available.
