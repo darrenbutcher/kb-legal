@@ -90,7 +90,9 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: "#fbfaf7",
-  colorScheme: "light",
+  // "only light" opts out of browsers' automatic dark mode (Chrome on
+  // Android, Edge, Opera), which would otherwise invert the palette.
+  colorScheme: "only light",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
