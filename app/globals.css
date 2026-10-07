@@ -138,6 +138,28 @@
     transform: none;
   }
 
+  /* Logo "balance": on hover both frame bars tip clockwise together (left
+     up, right down), each pivoting on the middle of its horizontal stroke,
+     and settle with a slight overshoot like a scale coming to rest. */
+  .kb-logo-bar {
+    transform-box: fill-box;
+    transition: transform 0.9s cubic-bezier(0.34, 1.7, 0.5, 1);
+  }
+
+  .kb-logo-bar-top {
+    transform-origin: 50% 0;
+  }
+
+  .kb-logo-bar-bottom {
+    transform-origin: 50% 100%;
+    transition-delay: 60ms;
+  }
+
+  .kb-logo-link:hover .kb-logo-bar,
+  .kb-logo-link:focus-visible .kb-logo-bar {
+    transform: rotate(4deg);
+  }
+
   .lift {
     transition:
       transform 0.35s var(--ease-settle),

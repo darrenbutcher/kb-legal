@@ -1,11 +1,11 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { nav, site } from "../_lib/site";
 import { CalendarIcon } from "./icons";
+import { KbLogo } from "./kb-logo";
 
 export function SiteHeader() {
   const pathname = usePathname();
@@ -27,16 +27,12 @@ export function SiteHeader() {
       }`}
     >
       <div className="mx-auto flex max-w-[1240px] flex-wrap items-center justify-between gap-x-8 gap-y-4 px-6 py-3">
-        <Link href="/" aria-label="KB Legal home" className="flex items-center">
-          <Image
-            src="/kb-legal-logo-color.svg"
-            alt="KB Legal"
-            width={80}
-            height={80}
-            priority
-            unoptimized
-            className="block size-20"
-          />
+        <Link
+          href="/"
+          aria-label="KB Legal home"
+          className="kb-logo-link flex items-center rounded-md"
+        >
+          <KbLogo className="block size-20" />
         </Link>
         <nav
           aria-label="Main"
