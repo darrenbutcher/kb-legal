@@ -92,8 +92,17 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${sourceSerif.variable} ${plexSans.variable} ${plexMono.variable} antialiased`}
     >
+      <head>
+        {/* Lets CSS hide scroll-reveal content only when JS will reveal it. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: "document.documentElement.classList.add('js')",
+          }}
+        />
+      </head>
       <body>{children}</body>
     </html>
   );

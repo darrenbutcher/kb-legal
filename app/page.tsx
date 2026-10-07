@@ -1,4 +1,6 @@
-import type { ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
+import { HeroHeading } from "./_components/hero-heading";
+import { RevealOnScroll } from "./_components/reveal-on-scroll";
 import { SiteFooter } from "./_components/site-footer";
 import { SiteHeader } from "./_components/site-header";
 import {
@@ -135,10 +137,10 @@ const textLinkArrow = (
   />
 );
 const primaryButton =
-  "inline-flex items-center gap-2.5 rounded-md bg-navy text-base font-medium text-white no-underline hover:text-white";
+  "inline-flex items-center gap-2.5 rounded-md bg-navy text-base font-medium text-white no-underline transition-colors duration-300 hover:bg-navy-deep hover:text-white";
 
-function Rule() {
-  return <span className="inline-block h-0.5 w-7 bg-sage" />;
+function Rule({ className = "" }: { className?: string }) {
+  return <span className={`inline-block h-0.5 w-7 bg-sage ${className}`} />;
 }
 
 export default function Home() {
@@ -155,31 +157,34 @@ export default function Home() {
       <main className="w-full bg-ivory">
         {/* Hero */}
         <section id="top" className="bg-ivory">
-          <div className="mx-auto flex max-w-[1240px] flex-wrap items-end gap-16 px-6 pt-12 pb-[88px] md:pt-16">
+          <div className="mx-auto flex max-w-[1240px] flex-wrap items-end gap-16 px-6 pt-8 pb-[88px] md:pt-10">
             <div className="min-w-0 flex-[999_1_560px]">
-              <p className="m-0 mb-6 flex items-center gap-3 font-mono text-[13px] tracking-[0.14em] text-muted uppercase">
+              <p className="hero-fade m-0 mb-5 flex items-center gap-3 font-mono text-[13px] tracking-[0.14em] text-muted uppercase">
                 <Rule />
                 Boutique corporate law firm · Sint Maarten, Dutch Caribbean
               </p>
-              <h1 className="m-0 font-serif text-[clamp(42px,5.6vw,78px)] leading-[1.04] font-medium tracking-[-0.02em] text-navy">
-                We do one thing, and we do it well –{" "}
-                <em className="font-normal italic">corporate law.</em>
-              </h1>
-              <p className="mt-7 mb-0 max-w-[620px] text-[19px] leading-[1.6] text-body">
+              <HeroHeading className="m-0 font-serif text-[clamp(42px,5.6vw,78px)] leading-[1.04] font-medium tracking-[-0.02em] text-navy" />
+              <p
+                className="hero-fade mt-6 mb-0 max-w-[620px] text-[19px] leading-[1.6] text-body"
+                style={{ "--delay": "750ms" } as CSSProperties}
+              >
                 KB Legal is a boutique law firm in the Dutch Caribbean. We
                 provide highly specialized corporate legal support and believe
                 in a personal, efficient way of practicing law: partner
                 experience and expertise, dedicated to each client, at
                 manageable rates.
               </p>
-              <div className="mt-9 flex flex-wrap gap-4">
+              <div
+                className="hero-fade mt-8 flex flex-wrap gap-4"
+                style={{ "--delay": "900ms" } as CSSProperties}
+              >
                 <a href="#book" className={`${primaryButton} px-7 py-4`}>
                   <CalendarIcon />
                   Book a consultation
                 </a>
                 <a
                   href={`mailto:${site.email}`}
-                  className="inline-flex items-center gap-2.5 rounded-md border border-navy bg-transparent px-[27px] py-[15px] text-base font-medium text-navy no-underline hover:text-navy"
+                  className="inline-flex items-center gap-2.5 rounded-md border border-navy bg-transparent px-[27px] py-[15px] text-base font-medium text-navy no-underline transition-colors duration-300 hover:bg-navy/5 hover:text-navy"
                 >
                   <MailIcon />
                   Or send an email
@@ -188,7 +193,10 @@ export default function Home() {
             </div>
 
             {/* Credentials panel, framed like the logo */}
-            <aside aria-label="Credentials" className="min-w-0 flex-[1_1_340px]">
+            <aside
+              aria-label="Credentials"
+              className="hero-panel min-w-0 flex-[1_1_340px]"
+            >
               <div className="h-[22px] rounded-t-xl border-[1.5px] border-b-0 border-navy" />
               <div className="rounded-b-xl bg-navy px-8 pt-8 pb-9 text-white">
                 <p className="m-0 mb-6 font-mono text-xs tracking-[0.16em] text-sage">
@@ -228,6 +236,7 @@ export default function Home() {
               <article
                 key={pillar.id}
                 id={pillar.id}
+                data-reveal
                 className={`flex flex-wrap gap-x-16 gap-y-6 py-16 ${
                   i < pillars.length - 1 ? "border-b border-line-strong" : ""
                 }`}
@@ -239,7 +248,7 @@ export default function Home() {
                   <span className="font-mono text-[15px] font-medium tracking-[0.18em] text-navy">
                     {pillar.label}
                   </span>
-                  <Rule />
+                  <Rule className="reveal-rule" />
                 </div>
                 <div className="min-w-0 max-w-[760px] flex-[999_1_560px]">
                   <h2 className={`${sectionHeading} mb-5 tracking-[-0.01em]`}>
@@ -263,10 +272,13 @@ export default function Home() {
           className="bg-ivory"
         >
           <div className="mx-auto max-w-[1240px] px-6 py-[104px]">
-            <div className="mb-12 flex flex-wrap items-end justify-between gap-6">
+            <div
+              data-reveal
+              className="mb-12 flex flex-wrap items-end justify-between gap-6"
+            >
               <div>
                 <p className={`${eyebrow} mb-4`}>
-                  <Rule />
+                  <Rule className="reveal-rule" />
                   SELECTED EXPERIENCE
                 </p>
                 <h2 id="experience-heading" className={sectionHeading}>
@@ -280,19 +292,26 @@ export default function Home() {
             </div>
 
             <ul className="m-0 grid list-none grid-cols-[repeat(auto-fit,minmax(260px,1fr))] gap-6 p-0">
-              {experience.map((item) => (
-                <li key={item.summary} className="flex flex-col">
-                  <div className="h-4 rounded-t-lg border-[1.5px] border-b-0 border-navy" />
-                  <div className="flex grow flex-col gap-3.5 rounded-b-lg border border-t-0 border-line bg-white px-6 pt-6 pb-7">
-                    <span className="font-mono text-[22px] text-navy">
-                      {item.value}
-                    </span>
-                    <span className="text-base leading-normal text-body">
-                      {item.summary}
-                    </span>
-                    <span className="mt-auto font-mono text-xs tracking-[0.12em] text-muted">
-                      {item.tag}
-                    </span>
+              {experience.map((item, i) => (
+                <li
+                  key={item.summary}
+                  data-reveal
+                  className="flex flex-col"
+                  style={{ "--delay": `${i * 90}ms` } as CSSProperties}
+                >
+                  <div className="lift flex grow flex-col rounded-lg">
+                    <div className="h-4 rounded-t-lg border-[1.5px] border-b-0 border-navy" />
+                    <div className="flex grow flex-col gap-3.5 rounded-b-lg border border-t-0 border-line bg-white px-6 pt-6 pb-7">
+                      <span className="font-mono text-[22px] text-navy">
+                        {item.value}
+                      </span>
+                      <span className="text-base leading-normal text-body">
+                        {item.summary}
+                      </span>
+                      <span className="mt-auto font-mono text-xs tracking-[0.12em] text-muted">
+                        {item.tag}
+                      </span>
+                    </div>
                   </div>
                 </li>
               ))}
@@ -307,9 +326,12 @@ export default function Home() {
           className="border-t border-line-cta bg-sand-deep"
         >
           <div className="mx-auto flex max-w-[1240px] flex-wrap items-end justify-between gap-x-16 gap-y-12 px-6 py-24">
-            <div className="min-w-0 max-w-[720px] flex-[999_1_520px]">
+            <div
+              data-reveal
+              className="min-w-0 max-w-[720px] flex-[999_1_520px]"
+            >
               <p className={`${eyebrow} mb-4`}>
-                <Rule />
+                <Rule className="reveal-rule" />
                 WHERE
               </p>
               <h2
@@ -325,7 +347,12 @@ export default function Home() {
                 Dutch Caribbean, we would be glad to hear from you.
               </p>
             </div>
-            <div id="book" className="flex flex-[1_1_300px] flex-col gap-3">
+            <div
+              id="book"
+              data-reveal
+              className="flex flex-[1_1_300px] flex-col gap-3"
+              style={{ "--delay": "150ms" } as CSSProperties}
+            >
               <a
                 href={`mailto:${site.email}?subject=${encodeURIComponent("Consultation request")}`}
                 className={`${primaryButton} justify-center px-7 py-[18px]`}
@@ -355,6 +382,7 @@ export default function Home() {
       </main>
 
       <SiteFooter />
+      <RevealOnScroll />
     </>
   );
 }

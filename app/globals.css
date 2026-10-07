@@ -46,7 +46,14 @@
 
   section[id],
   article[id] {
-    scroll-margin-top: 112px;
+    scroll-margin-top: 24px;
+  }
+
+  @media (width >= 48rem) {
+    section[id],
+    article[id] {
+      scroll-margin-top: 112px;
+    }
   }
 }
 
@@ -55,4 +62,115 @@
   background-image: url("/footer-pattern.svg");
   background-repeat: repeat;
   background-size: 96px 96px;
+}
+
+/* ---------- Motion ----------
+   Restrained, one-shot movement only: nothing loops, nothing bounces.
+   Everything is skipped for visitors who prefer reduced motion. */
+
+:root {
+  --ease-settle: cubic-bezier(0.22, 0.61, 0.24, 1);
+}
+
+.hero-word {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  /* Room for descenders and italic overhang inside the clipping mask. */
+  padding: 0 0.08em 0.16em;
+  margin: 0 -0.08em -0.16em;
+}
+
+.hero-word-inner {
+  display: inline-block;
+}
+
+.hero-emphasis {
+  background-image: linear-gradient(var(--color-sage), var(--color-sage));
+  background-repeat: no-repeat;
+  background-position: 0 92%;
+  background-size: 100% 0.06em;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-word-inner {
+    transform: translateY(110%);
+    animation: word-rise 0.9s var(--ease-settle) forwards;
+    animation-delay: calc(120ms + var(--i, 0) * 60ms);
+  }
+
+  .hero-emphasis {
+    background-size: 0% 0.06em;
+    animation: underline-draw 0.9s var(--ease-settle) 1.05s forwards;
+  }
+
+  .hero-fade {
+    opacity: 0;
+    animation: fade-rise 0.8s var(--ease-settle) forwards;
+    animation-delay: var(--delay, 0ms);
+  }
+
+  .hero-panel {
+    opacity: 0;
+    animation: fade-rise 1s var(--ease-settle) 350ms forwards;
+  }
+
+  .js [data-reveal] {
+    opacity: 0;
+    transform: translateY(18px);
+    transition:
+      opacity 0.8s var(--ease-settle),
+      transform 0.8s var(--ease-settle);
+    transition-delay: var(--delay, 0ms);
+  }
+
+  .js [data-reveal].is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* The sage rules beside each section label draw in with their section. */
+  .js [data-reveal] .reveal-rule {
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.7s var(--ease-settle) 0.35s;
+  }
+
+  .js [data-reveal].is-visible .reveal-rule {
+    transform: none;
+  }
+
+  .lift {
+    transition:
+      transform 0.35s var(--ease-settle),
+      box-shadow 0.35s var(--ease-settle);
+  }
+
+  .lift:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 30px -18px rgb(23 34 80 / 0.35);
+  }
+}
+
+@keyframes word-rise {
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes underline-draw {
+  to {
+    background-size: 100% 0.06em;
+  }
+}
+
+@keyframes fade-rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
