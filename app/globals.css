@@ -1,26 +1,278 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
+  --color-ivory: #fbfaf7;
+  --color-sand: #f3efe6;
+  --color-sand-deep: #ece6da;
+  --color-line: #e6e0d4;
+  --color-line-strong: #ddd6c7;
+  --color-line-cta: #e0d9cb;
+  --color-navy: #172250;
+  --color-navy-deep: #121a3d;
+  --color-ink: #1b2140;
+  --color-body: #3a4060;
+  --color-muted: #5e6178;
+  --color-sage: #a9bd7e;
+  --color-mist: #c3c7d8;
+  --color-mist-dim: #9ea3bb;
+  --color-link: #1f2c66;
+
+  /* shadcn/ui tokens, mapped to the KB Legal palette (see :root below). */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-hover: var(--secondary-hover);
+  --color-secondary-foreground: var(--secondary-foreground);
+  /* No --color-muted mapping: the site's own `text-muted` grey keeps that
+     name. shadcn's muted surface is available as var(--muted). */
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-lg: var(--radius);
+
+  --font-sans: var(--font-plex-sans), system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), monospace;
+  --font-serif: var(--font-source-serif), Georgia, serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+:root {
+  --background: #fbfaf7;
+  --foreground: #1b2140;
+  --card: #fbfaf7;
+  --card-foreground: #1b2140;
+  --primary: #172250;
+  --primary-hover: #121a3d;
+  --primary-foreground: #ffffff;
+  --secondary: #ece6da;
+  --secondary-hover: #e0d9cb;
+  --secondary-foreground: #172250;
+  --muted: #f3efe6;
+  --muted-foreground: #3a4060;
+  --accent: #a9bd7e;
+  --accent-foreground: #172250;
+  --border: #e6e0d4;
+  --input: #cfc8b8;
+  --ring: #a9bd7e;
+  --radius: 0.75rem;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    background: var(--color-ivory);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 17px;
+    line-height: 1.6;
+  }
+
+  a {
+    color: var(--color-link);
+  }
+
+  a:hover {
+    color: var(--color-navy-deep);
+  }
+
+  /* Clear the sticky header when jumping to an anchor. */
+  [id] {
+    scroll-margin-top: 96px;
+  }
+
+  @media (width >= 64rem) {
+    [id] {
+      scroll-margin-top: 120px;
+    }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.kb-footer {
+  background-color: var(--color-navy-deep);
+  background-image: url("/footer-pattern.svg");
+  background-repeat: repeat;
+  background-size: 96px 96px;
+}
+
+/* Placeholder behind the consent-gated map: a quiet surveyor's grid. */
+.kb-map-grid {
+  background-color: #e9e3d6;
+  background-image:
+    linear-gradient(#ddd5c5 1px, transparent 1px),
+    linear-gradient(90deg, #ddd5c5 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* ---------- Motion ----------
+   Restrained, one-shot movement only: nothing loops, nothing bounces.
+   Everything is skipped for visitors who prefer reduced motion. */
+
+:root {
+  --ease-settle: cubic-bezier(0.22, 0.61, 0.24, 1);
+}
+
+.hero-word {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  /* Room for descenders and italic overhang inside the clipping mask. */
+  padding: 0 0.08em 0.16em;
+  margin: 0 -0.08em -0.16em;
+}
+
+.hero-word-inner {
+  display: inline-block;
+}
+
+.hero-emphasis {
+  background-image: linear-gradient(var(--color-sage), var(--color-sage));
+  background-repeat: no-repeat;
+  background-position: 0 92%;
+  background-size: 100% 0.06em;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-word-inner {
+    transform: translateY(110%);
+    animation: word-rise 0.9s var(--ease-settle) forwards;
+    animation-delay: calc(120ms + var(--i, 0) * 60ms);
+  }
+
+  .hero-emphasis {
+    background-size: 0% 0.06em;
+    animation: underline-draw 0.9s var(--ease-settle) 1.05s forwards;
+  }
+
+  .hero-fade {
+    opacity: 0;
+    animation: fade-rise 0.8s var(--ease-settle) forwards;
+    animation-delay: var(--delay, 0ms);
+  }
+
+  .hero-panel {
+    opacity: 0;
+    animation: fade-rise 1s var(--ease-settle) 350ms forwards;
+  }
+
+  .js [data-reveal] {
+    opacity: 0;
+    transform: translateY(18px);
+    transition:
+      opacity 0.8s var(--ease-settle),
+      transform 0.8s var(--ease-settle);
+    transition-delay: var(--delay, 0ms);
+  }
+
+  .js [data-reveal].is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* The sage rules beside each section label draw in with their section. */
+  .js [data-reveal] .reveal-rule {
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.7s var(--ease-settle) 0.35s;
+  }
+
+  .js [data-reveal].is-visible .reveal-rule {
+    transform: none;
+  }
+
+  /* Logo balance: while the pointer rests on the logo, the frame's top bar
+     swings slowly on its centre like the beam of a scale (left up, level,
+     right up, level). Each cycle starts and ends level, so when the pointer
+     leaves the header lets the current cycle finish instead of snapping. */
+  .kb-logo-beam {
+    transform-box: fill-box;
+    transform-origin: 50% 0;
+  }
+
+  .kb-logo-beam.is-swinging {
+    animation: kb-balance 4.4s infinite;
+  }
+
+  .lift {
+    transition:
+      transform 0.35s var(--ease-settle),
+      box-shadow 0.35s var(--ease-settle);
+  }
+
+  .lift:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 30px -18px rgb(23 34 80 / 0.35);
+  }
+}
+
+@keyframes kb-balance {
+  0%,
+  100% {
+    transform: rotate(0deg);
+    animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1);
+  }
+  25% {
+    transform: rotate(4.5deg);
+    animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1);
+  }
+  75% {
+    transform: rotate(-4.5deg);
+    animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1);
+  }
+}
+
+@keyframes word-rise {
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes underline-draw {
+  to {
+    background-size: 100% 0.06em;
+  }
+}
+
+@keyframes fade-rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Body copy on the legal pages: bulleted lists with sage markers. */
+.legal-body p {
+  margin: 0;
+}
+
+.legal-body ul {
+  margin: 0;
+  padding-left: 1.25rem;
+  list-style: disc;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.legal-body li::marker {
+  color: var(--color-sage);
+}
+
+.legal-body strong {
+  font-weight: 500;
+  color: var(--color-ink);
 }
