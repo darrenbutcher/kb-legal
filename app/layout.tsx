@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { IBM_Plex_Mono, IBM_Plex_Sans, Source_Serif_4 } from "next/font/google";
+import { CookieConsentProvider } from "./_components/cookie-consent";
 import { RevealOnScroll } from "./_components/reveal-on-scroll";
 import { SiteFooter } from "./_components/site-footer";
 import { SiteHeader } from "./_components/site-header";
@@ -108,11 +109,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         />
       </head>
       <body>
-        <SiteHeader />
-        {children}
-        <SiteFooter />
-        <RevealOnScroll />
-        <SiteToaster />
+        <CookieConsentProvider>
+          <SiteHeader />
+          {children}
+          <SiteFooter />
+          <RevealOnScroll />
+          <SiteToaster />
+        </CookieConsentProvider>
       </body>
     </html>
   );

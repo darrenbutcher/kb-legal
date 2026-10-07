@@ -13,6 +13,7 @@ import {
 import { Eyebrow, JsonLd, PageHero, container, delay } from "../_components/ui";
 import { breadcrumbJsonLd, organizationId, pageMetadata } from "../_lib/seo";
 import { site } from "../_lib/site";
+import { ConsentMap } from "./consent-map";
 import { ContactForm } from "./contact-form";
 
 export const metadata: Metadata = pageMetadata({
@@ -167,13 +168,7 @@ export default function WherePage() {
         <div data-reveal className={`${container} pb-[104px]`}>
           <div className="h-[18px] rounded-t-xl border-[1.5px] border-b-0 border-navy" />
           <div className="relative h-[440px] overflow-hidden rounded-b-xl bg-sand-deep">
-            <iframe
-              title="Map showing KB Legal at 28a Front Street, Philipsburg"
-              src={site.maps.embed}
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              className="absolute inset-0 size-full border-0 [filter:grayscale(1)_sepia(0.18)_contrast(0.95)]"
-            />
+            <ConsentMap />
             <a
               href={site.maps.directions}
               target="_blank"

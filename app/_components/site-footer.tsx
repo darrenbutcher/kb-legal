@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { nav, site } from "../_lib/site";
+import { CookieSettingsButton } from "./cookie-consent";
 import { NewsletterForm } from "./newsletter-form";
 import {
   CalendarIcon,
@@ -138,6 +139,7 @@ export function SiteFooter() {
             <Link href="/privacy" className="text-mist hover:text-white">
               Privacy
             </Link>
+            <CookieSettingsButton className="text-[13px] text-mist hover:text-white" />
             <span>
               Crafted by{" "}
               <a

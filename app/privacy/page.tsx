@@ -74,11 +74,11 @@ const sections: LegalSection[] = [
         We share personal data only with service providers that help us run this
         website and our practice, such as our website host, email provider,
         scheduling service, and Google, which provides the map on our contact
-        page and stores newsletter sign-ups in Google Sheets. They may process data only on our
-        instructions or under their own privacy policies where they act
-        independently. Some providers may store data outside Sint Maarten; where
-        they do, we take reasonable steps to make sure it is protected. We may
-        also disclose data where the law requires us to.
+        page and stores newsletter sign-ups in Google Sheets. They may process
+        data only on our instructions or under their own privacy policies where
+        they act independently. Some providers may store data outside Sint
+        Maarten; where they do, we take reasonable steps to make sure it is
+        protected. We may also disclose data where the law requires us to.
       </p>
     ),
   },
@@ -124,12 +124,34 @@ const sections: LegalSection[] = [
     id: "cookies",
     title: "Cookies",
     body: (
-      <p>
-        This website does not set its own cookies or use analytics. The map on
-        our contact page is provided by Google, and any scheduling tool we use
-        is provided by a third party; these services may set their own cookies
-        under their own policies when you view or use them.
-      </p>
+      <>
+        <p>
+          We do not use analytics, advertising or tracking cookies. When you
+          first visit, we ask for your consent before loading anything that sets
+          non-essential cookies, and nothing optional is switched on until you
+          choose.
+        </p>
+        <ul>
+          <li>
+            <strong>Essential.</strong> A cookie named{" "}
+            <code>kb-cookie-consent</code> remembers your cookie choice for 180
+            days. It is needed for the site to respect that choice and is always
+            on.
+          </li>
+          <li>
+            <strong>Maps &amp; embedded content (optional).</strong> The map on
+            our contact page is provided by Google and is only loaded if you
+            allow it. Google may then set its own cookies under its own privacy
+            policy.
+          </li>
+        </ul>
+        <p>
+          You can change or withdraw your consent at any time through{" "}
+          <strong>Cookie settings</strong> at the bottom of every page. If we
+          later use a scheduling tool or other embedded service that sets
+          cookies, it will be added here and will also require your consent.
+        </p>
+      </>
     ),
   },
   {

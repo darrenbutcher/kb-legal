@@ -62,6 +62,115 @@
   background-size: 96px 96px;
 }
 
+/* Cookie consent (react-cookie-manager), re-skinned to the site. The library
+   injects unlayered CSS driven by --rcm-* variables, so overriding the
+   variables on its light theme keeps its layout and mechanics intact. */
+.cookie-manager[data-cookie-theme="light"] {
+  --rcm-font: var(--font-plex-sans), system-ui, sans-serif;
+  --rcm-surface: #fbfaf7;
+  --rcm-surface-muted: #ece6da;
+  --rcm-surface-hover: #e0d9cb;
+  --rcm-text: #172250;
+  --rcm-text-muted: #3a4060;
+  --rcm-text-subtle: #5e6178;
+  --rcm-accent: #172250;
+  --rcm-accent-hover: #121a3d;
+  --rcm-accent-contrast: #ffffff;
+  --rcm-border: #e6e0d4;
+  --rcm-overlay: rgb(18 26 61 / 0.38);
+  --rcm-shadow: 0 24px 60px -28px rgb(18 26 61 / 0.55);
+  --rcm-radius: 0.75rem;
+  --rcm-button-radius: 0.375rem;
+  --rcm-focus: rgb(169 189 126 / 0.6);
+}
+
+.cookie-manager[data-cookie-theme="light"] .rcm-surface {
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+.cookie-manager[data-cookie-theme="light"] .rcm-title {
+  font-family: var(--font-source-serif), Georgia, serif;
+  font-size: 1.375rem;
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--rcm-text);
+}
+
+.cookie-manager[data-cookie-theme="light"] .rcm-message {
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+.cookie-manager[data-cookie-theme="light"] :is(
+    .rcm-button-primary,
+    .rcm-button-secondary,
+    .rcm-button-outline
+  ) {
+  min-height: 2.75rem;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
+}
+
+/* Decline matches Accept exactly, so refusing is as easy and as prominent
+   as agreeing. (The manage view's Cancel is the one secondary button that
+   stays quiet; it is the only one sized sm:w-auto.) */
+.cookie-manager[data-cookie-theme="light"]
+  .rcm-button-secondary:not(.sm\:w-auto) {
+  color: var(--rcm-accent-contrast);
+  background: var(--rcm-accent);
+}
+
+.cookie-manager[data-cookie-theme="light"]
+  .rcm-button-secondary:not(.sm\:w-auto):hover {
+  background: var(--rcm-accent-hover);
+}
+
+.cookie-manager[data-cookie-theme="light"] .rcm-button-secondary.sm\:w-auto {
+  color: var(--rcm-text);
+  background: transparent;
+  border: 1px solid var(--rcm-text);
+}
+
+.cookie-manager[data-cookie-theme="light"] .rcm-button-outline {
+  color: var(--rcm-text);
+  border: 1px solid var(--rcm-text);
+  background: transparent;
+}
+
+.cookie-manager[data-cookie-theme="light"] .rcm-button-outline:hover {
+  color: var(--rcm-text);
+  background: rgb(23 34 80 / 0.05);
+}
+
+.cookie-manager[data-cookie-theme="light"] :is(button, a):focus-visible {
+  outline: 3px solid var(--rcm-focus);
+  outline-offset: 2px;
+}
+
+.cookie-manager[data-cookie-theme="light"] .rcm-badge {
+  white-space: nowrap;
+}
+
+.cookie-manager[data-cookie-theme="light"] .rcm-link {
+  color: var(--rcm-text);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* Placeholder behind the consent-gated map: a quiet surveyor's grid. */
+.kb-map-grid {
+  background-color: #e9e3d6;
+  background-image:
+    linear-gradient(#ddd5c5 1px, transparent 1px),
+    linear-gradient(90deg, #ddd5c5 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
 /* ---------- Motion ----------
    Restrained, one-shot movement only: nothing loops, nothing bounces.
    Everything is skipped for visitors who prefer reduced motion. */
