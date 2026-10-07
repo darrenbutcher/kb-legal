@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { nav, site } from "../_lib/site";
+import { NewsletterForm } from "./newsletter-form";
 import {
   CalendarIcon,
   ClockIcon,
@@ -48,32 +49,7 @@ export function SiteFooter() {
               Occasional updates on corporate law and transactions in the Dutch
               Caribbean, written for boards, shareholders and their advisors.
             </p>
-            {/* TODO: connect to a newsletter provider. */}
-            <form className="flex flex-col gap-2">
-              <label htmlFor="nl-email" className="text-sm text-white">
-                Email address
-              </label>
-              <div className="flex flex-wrap gap-2.5">
-                <input
-                  id="nl-email"
-                  name="email"
-                  type="email"
-                  required
-                  autoComplete="email"
-                  placeholder="name@company.com"
-                  className="h-[52px] min-w-0 flex-[1_1_220px] rounded-md border border-white/32 bg-white/4 px-4 font-sans text-base text-white placeholder:text-white/50"
-                />
-                <button
-                  type="submit"
-                  className="h-[52px] cursor-pointer rounded-md border-none bg-sand px-7 font-sans text-base font-medium text-navy-deep"
-                >
-                  Subscribe
-                </button>
-              </div>
-              <span className="text-[13px] text-mist-dim">
-                You can unsubscribe at any time.
-              </span>
-            </form>
+            <NewsletterForm />
           </div>
         </div>
 

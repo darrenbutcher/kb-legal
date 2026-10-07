@@ -3,6 +3,7 @@ import { IBM_Plex_Mono, IBM_Plex_Sans, Source_Serif_4 } from "next/font/google";
 import { RevealOnScroll } from "./_components/reveal-on-scroll";
 import { SiteFooter } from "./_components/site-footer";
 import { SiteHeader } from "./_components/site-header";
+import { SiteToaster } from "./_components/site-toaster";
 import { site } from "./_lib/site";
 import "./globals.css";
 
@@ -111,6 +112,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         {children}
         <SiteFooter />
         <RevealOnScroll />
+        <SiteToaster />
       </body>
     </html>
   );

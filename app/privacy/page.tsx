@@ -73,8 +73,8 @@ const sections: LegalSection[] = [
       <p>
         We share personal data only with service providers that help us run this
         website and our practice, such as our website host, email provider,
-        scheduling service and newsletter service, and Google, which provides
-        the map on our contact page. They may process data only on our
+        scheduling service, and Google, which provides the map on our contact
+        page and stores newsletter sign-ups in Google Sheets. They may process data only on our
         instructions or under their own privacy policies where they act
         independently. Some providers may store data outside Sint Maarten; where
         they do, we take reasonable steps to make sure it is protected. We may
