@@ -44,6 +44,8 @@
 }
 
 :root {
+  /* Light only: also tells browsers not to auto-darken the site. */
+  color-scheme: only light;
   --background: #fbfaf7;
   --foreground: #1b2140;
   --card: #fbfaf7;
