@@ -2,10 +2,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { site } from "../_lib/site";
 import {
+  ArrowUpRightIcon,
   CalendarIcon,
   ClockIcon,
+  LinkedInIcon,
   MailIcon,
-  PersonIcon,
   PhoneIcon,
   PinIcon,
 } from "./icons";
@@ -26,15 +27,15 @@ export function SiteFooter() {
             <Link
               href="/"
               aria-label="KB Legal home"
-              className="inline-flex w-24"
+              className="inline-flex"
             >
               <Image
                 src="/kb-legal-logo-white.svg"
                 alt="KB Legal"
-                width={104}
-                height={104}
+                width={80}
+                height={80}
                 unoptimized
-                className="block size-[104px] max-w-none"
+                className="block size-20"
               />
             </Link>
             <span className="max-w-[340px] font-serif text-lg leading-normal italic text-white">
@@ -67,11 +68,11 @@ export function SiteFooter() {
                   required
                   autoComplete="email"
                   placeholder="name@company.com"
-                  className="h-[52px] min-w-0 flex-[1_1_220px] rounded-[2px] border border-white/32 bg-white/4 px-4 font-sans text-base text-white placeholder:text-white/50"
+                  className="h-[52px] min-w-0 flex-[1_1_220px] rounded-md border border-white/32 bg-white/4 px-4 font-sans text-base text-white placeholder:text-white/50"
                 />
                 <button
                   type="submit"
-                  className="h-[52px] cursor-pointer rounded-[2px] border-none bg-sand px-7 font-sans text-base font-medium text-navy-deep"
+                  className="h-[52px] cursor-pointer rounded-md border-none bg-sand px-7 font-sans text-base font-medium text-navy-deep"
                 >
                   Subscribe
                 </button>
@@ -143,13 +144,9 @@ export function SiteFooter() {
               rel="noopener noreferrer"
               className={contactLink}
             >
-              <span
-                aria-hidden="true"
-                className="inline-flex size-5 items-center justify-center rounded-[3px] border-[1.5px] border-sage"
-              >
-                <PersonIcon size={12} strokeWidth={2.2} className={sageIcon} />
-              </span>
-              LinkedIn ↗
+              <LinkedInIcon size={20} strokeWidth={1.5} className={sageIcon} />
+              LinkedIn
+              <ArrowUpRightIcon size={15} strokeWidth={1.5} className="-ml-1.5 text-mist" />
             </a>
           </div>
         </div>

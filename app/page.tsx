@@ -1,7 +1,12 @@
 import type { ReactNode } from "react";
 import { SiteFooter } from "./_components/site-footer";
 import { SiteHeader } from "./_components/site-header";
-import { CalendarIcon, MailIcon, PhoneIcon } from "./_components/icons";
+import {
+  ArrowRightIcon,
+  CalendarIcon,
+  MailIcon,
+  PhoneIcon,
+} from "./_components/icons";
 import { site } from "./_lib/site";
 
 const credentials = [
@@ -121,9 +126,16 @@ const eyebrow =
 const sectionHeading =
   "m-0 font-serif text-[clamp(30px,3.2vw,42px)] leading-[1.15] font-medium text-navy";
 const textLink =
-  "border-b border-current pt-2.5 pb-0.5 text-base font-medium no-underline";
+  "group inline-flex items-center gap-1.5 border-b border-current pt-2.5 pb-0.5 text-base font-medium no-underline";
+const textLinkArrow = (
+  <ArrowRightIcon
+    size={16}
+    strokeWidth={1.75}
+    className="transition-transform group-hover:translate-x-0.5"
+  />
+);
 const primaryButton =
-  "inline-flex items-center gap-2.5 rounded-[2px] bg-navy text-base font-medium text-white no-underline hover:text-white";
+  "inline-flex items-center gap-2.5 rounded-md bg-navy text-base font-medium text-white no-underline hover:text-white";
 
 function Rule() {
   return <span className="inline-block h-0.5 w-7 bg-sage" />;
@@ -143,9 +155,9 @@ export default function Home() {
       <main className="w-full bg-ivory">
         {/* Hero */}
         <section id="top" className="bg-ivory">
-          <div className="mx-auto flex max-w-[1240px] flex-wrap items-end gap-16 px-6 pt-24 pb-[88px]">
+          <div className="mx-auto flex max-w-[1240px] flex-wrap items-end gap-16 px-6 pt-12 pb-[88px] md:pt-16">
             <div className="min-w-0 flex-[999_1_560px]">
-              <p className="m-0 mb-7 flex items-center gap-3 font-mono text-[13px] tracking-[0.14em] text-muted uppercase">
+              <p className="m-0 mb-6 flex items-center gap-3 font-mono text-[13px] tracking-[0.14em] text-muted uppercase">
                 <Rule />
                 Boutique corporate law firm · Sint Maarten, Dutch Caribbean
               </p>
@@ -153,21 +165,21 @@ export default function Home() {
                 We do one thing, and we do it well –{" "}
                 <em className="font-normal italic">corporate law.</em>
               </h1>
-              <p className="mt-8 mb-0 max-w-[620px] text-[19px] leading-[1.6] text-body">
+              <p className="mt-7 mb-0 max-w-[620px] text-[19px] leading-[1.6] text-body">
                 KB Legal is a boutique law firm in the Dutch Caribbean. We
                 provide highly specialized corporate legal support and believe
                 in a personal, efficient way of practicing law: partner
                 experience and expertise, dedicated to each client, at
                 manageable rates.
               </p>
-              <div className="mt-10 flex flex-wrap gap-4">
+              <div className="mt-9 flex flex-wrap gap-4">
                 <a href="#book" className={`${primaryButton} px-7 py-4`}>
                   <CalendarIcon />
                   Book a consultation
                 </a>
                 <a
                   href={`mailto:${site.email}`}
-                  className="inline-flex items-center gap-2.5 rounded-[2px] border border-navy bg-transparent px-[27px] py-[15px] text-base font-medium text-navy no-underline hover:text-navy"
+                  className="inline-flex items-center gap-2.5 rounded-md border border-navy bg-transparent px-[27px] py-[15px] text-base font-medium text-navy no-underline hover:text-navy"
                 >
                   <MailIcon />
                   Or send an email
@@ -177,8 +189,8 @@ export default function Home() {
 
             {/* Credentials panel, framed like the logo */}
             <aside aria-label="Credentials" className="min-w-0 flex-[1_1_340px]">
-              <div className="h-[22px] border-[1.5px] border-b-0 border-navy" />
-              <div className="bg-navy px-8 pt-8 pb-9 text-white">
+              <div className="h-[22px] rounded-t-xl border-[1.5px] border-b-0 border-navy" />
+              <div className="rounded-b-xl bg-navy px-8 pt-8 pb-9 text-white">
                 <p className="m-0 mb-6 font-mono text-xs tracking-[0.16em] text-sage">
                   AT A GLANCE
                 </p>
@@ -235,7 +247,8 @@ export default function Home() {
                   </h2>
                   <p className="m-0 mb-6 text-body">{pillar.body}</p>
                   <a href={`#${pillar.id}`} className={textLink}>
-                    Read more →
+                    Read more
+                    {textLinkArrow}
                   </a>
                 </div>
               </article>
@@ -261,15 +274,16 @@ export default function Home() {
                 </h2>
               </div>
               <a href="#what" className={textLink}>
-                View all experience →
+                View all experience
+                {textLinkArrow}
               </a>
             </div>
 
             <ul className="m-0 grid list-none grid-cols-[repeat(auto-fit,minmax(260px,1fr))] gap-6 p-0">
               {experience.map((item) => (
                 <li key={item.summary} className="flex flex-col">
-                  <div className="h-4 border-[1.5px] border-b-0 border-navy" />
-                  <div className="flex grow flex-col gap-3.5 border border-t-0 border-line bg-white px-6 pt-6 pb-7">
+                  <div className="h-4 rounded-t-lg border-[1.5px] border-b-0 border-navy" />
+                  <div className="flex grow flex-col gap-3.5 rounded-b-lg border border-t-0 border-line bg-white px-6 pt-6 pb-7">
                     <span className="font-mono text-[22px] text-navy">
                       {item.value}
                     </span>
