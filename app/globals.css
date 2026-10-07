@@ -86,11 +86,12 @@
     color: var(--color-navy-deep);
   }
 
+  /* Clear the sticky header when jumping to an anchor. */
   [id] {
-    scroll-margin-top: 24px;
+    scroll-margin-top: 96px;
   }
 
-  @media (width >= 48rem) {
+  @media (width >= 64rem) {
     [id] {
       scroll-margin-top: 120px;
     }
