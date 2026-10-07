@@ -157,7 +157,7 @@ export default function Home() {
       <main className="w-full bg-ivory">
         {/* Hero */}
         <section id="top" className="bg-ivory">
-          <div className="mx-auto flex max-w-[1240px] flex-wrap items-end gap-16 px-6 pt-8 pb-[88px] md:pt-10">
+          <div className="mx-auto flex max-w-[1240px] flex-wrap items-start gap-16 px-6 pt-6 pb-20 md:pt-8">
             <div className="min-w-0 flex-[999_1_560px]">
               <p className="hero-fade m-0 mb-5 flex items-center gap-3 font-mono text-[13px] tracking-[0.14em] text-muted uppercase">
                 <Rule />

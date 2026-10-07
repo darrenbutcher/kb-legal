@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { site } from "../_lib/site";
 import {
-  ArrowUpRightIcon,
   CalendarIcon,
   ClockIcon,
   LinkedInIcon,
@@ -146,7 +145,6 @@ export function SiteFooter() {
             >
               <LinkedInIcon size={20} strokeWidth={1.5} className={sageIcon} />
               LinkedIn
-              <ArrowUpRightIcon size={15} strokeWidth={1.5} className="-ml-1.5 text-mist" />
             </a>
           </div>
         </div>
@@ -165,7 +163,7 @@ export function SiteFooter() {
               Privacy
             </a>
             <span>
-              Design &amp; development by{" "}
+              Crafted by{" "}
               <a
                 href="https://boltmode.co"
                 target="_blank"
