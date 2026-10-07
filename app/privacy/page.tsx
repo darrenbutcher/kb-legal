@@ -126,10 +126,9 @@ const sections: LegalSection[] = [
     body: (
       <>
         <p>
-          We do not use analytics, advertising or tracking cookies. When you
-          first visit, we ask for your consent before loading anything that sets
-          non-essential cookies, and nothing optional is switched on until you
-          choose.
+          We do not use analytics, advertising or tracking cookies. A short
+          notice on your first visit explains the cookies below and lets you
+          accept, decline or choose your preferences.
         </p>
         <ul>
           <li>
@@ -139,17 +138,17 @@ const sections: LegalSection[] = [
             on.
           </li>
           <li>
-            <strong>Maps &amp; embedded content (optional).</strong> The map on
-            our contact page is provided by Google and is only loaded if you
-            allow it. Google may then set its own cookies under its own privacy
-            policy.
+            <strong>Maps &amp; embedded content.</strong> Our contact page shows
+            a map provided by Google, which may set its own cookies under its
+            own privacy policy. The map is shown unless you decline or switch
+            this category off; if you do, it is not loaded.
           </li>
         </ul>
         <p>
-          You can change or withdraw your consent at any time through{" "}
+          You can change or withdraw your choice at any time through{" "}
           <strong>Cookie settings</strong> at the bottom of every page. If we
           later use a scheduling tool or other embedded service that sets
-          cookies, it will be added here and will also require your consent.
+          cookies, it will be added here and to your cookie settings.
         </p>
       </>
     ),

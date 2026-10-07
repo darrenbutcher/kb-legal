@@ -1,24 +1,17 @@
 "use client";
 
-import { useSyncExternalStore } from "react";
+import { Button } from "@/components/ui/button";
 import { useEmbedConsent } from "../_components/cookie-consent";
 import { PinIcon } from "../_components/icons";
 import { site } from "../_lib/site";
 
-// The Google map sets Google's cookies, so it only loads once the visitor has
-// allowed "Maps & embedded content" — from the banner, preferences, or the
-// button here. Until then a placeholder in the site's style stands in.
+// The Google map is shown by default. If the visitor has declined "Maps &
+// embedded content", a placeholder in the site's style stands in instead,
+// with a one-click way to show the map after all.
 export function ConsentMap() {
-  const { allowed, allow, openPreferencesModal } = useEmbedConsent();
-  // Consent lives in a cookie only the browser can read, so the server and
-  // first client render both show the placeholder.
-  const mounted = useSyncExternalStore(
-    noopSubscribe,
-    () => true,
-    () => false,
-  );
+  const { allowed, allow, openPreferences } = useEmbedConsent();
 
-  if (mounted && allowed) {
+  if (allowed) {
     return (
       <iframe
         title="Map showing KB Legal at 28a Front Street, Philipsburg"
@@ -41,30 +34,16 @@ export function ConsentMap() {
           </p>
         </div>
         <p className="m-0 text-[13.5px] leading-[1.55] text-muted">
-          The map is provided by Google, which sets its own cookies. We only
-          load it with your permission.
+          You’ve turned off maps and embedded content. The map is provided by
+          Google, which sets its own cookies.
         </p>
         <div className="flex flex-wrap justify-center gap-2.5">
-          <button
-            type="button"
-            onClick={allow}
-            className="inline-flex h-11 cursor-pointer items-center justify-center rounded-md border-none bg-navy px-5 font-sans text-[15px] font-medium text-white transition-colors duration-300 hover:bg-navy-deep"
-          >
-            Load map
-          </button>
-          <button
-            type="button"
-            onClick={openPreferencesModal}
-            className="inline-flex h-11 cursor-pointer items-center justify-center rounded-md border border-navy bg-transparent px-5 font-sans text-[15px] font-medium text-navy transition-colors duration-300 hover:bg-navy/5"
-          >
+          <Button onClick={allow}>Show map</Button>
+          <Button variant="outline" onClick={openPreferences}>
             Cookie settings
-          </button>
+          </Button>
         </div>
       </div>
     </div>
   );
-}
-
-function noopSubscribe() {
-  return () => {};
 }
