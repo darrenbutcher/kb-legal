@@ -156,12 +156,12 @@ export function SiteFooter() {
           </span>
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
             <span>© 2026 KB Legal. All rights reserved.</span>
-            <a href="#" className="text-mist hover:text-white">
+            <Link href="/disclaimer" className="text-mist hover:text-white">
               Disclaimer
-            </a>
-            <a href="#" className="text-mist hover:text-white">
+            </Link>
+            <Link href="/privacy" className="text-mist hover:text-white">
               Privacy
-            </a>
+            </Link>
             <span>
               Crafted by{" "}
               <a

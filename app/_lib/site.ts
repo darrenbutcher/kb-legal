@@ -11,6 +11,10 @@ export const site = {
   phone: "+1 721 542-4171",
   phoneHref: "tel:+17215424171",
   linkedin: "#",
+  // TODO: add the Chamber of Commerce registration number; it appears on the
+  // disclaimer once set.
+  chamberOfCommerce: "",
+  legalUpdated: "2026-10-07",
   founderLinkedin: "#",
   // Every "Book a consultation" button leads here.
   bookPath: "/where#book",

@@ -12,6 +12,8 @@ const routes: {
   { path: "/what/experience", priority: 0.7, changeFrequency: "monthly" },
   { path: "/why", priority: 0.7, changeFrequency: "yearly" },
   { path: "/where", priority: 0.8, changeFrequency: "yearly" },
+  { path: "/disclaimer", priority: 0.3, changeFrequency: "yearly" },
+  { path: "/privacy", priority: 0.3, changeFrequency: "yearly" },
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
