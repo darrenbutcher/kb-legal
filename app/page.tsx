@@ -1,69 +1,346 @@
-import Image from "next/image";
+import type { ReactNode } from "react";
+import { SiteFooter } from "./_components/site-footer";
+import { SiteHeader } from "./_components/site-header";
+import { CalendarIcon, MailIcon, PhoneIcon } from "./_components/icons";
+import { site } from "./_lib/site";
+
+const credentials = [
+  { title: "Chambers & Partners", detail: "Ranked since 2018" },
+  {
+    title: "Three bar admissions",
+    detail: "Dutch Caribbean · Amsterdam · New York",
+  },
+  { title: "Over 20 years", detail: "In corporate law" },
+  { title: "Leiden · Columbia", detail: "LLM, 1997 · LLM, 2005" },
+];
+
+const pillars: {
+  id: string;
+  index: string;
+  label: string;
+  heading: ReactNode;
+  body: string;
+}[] = [
+  {
+    id: "who",
+    index: "01",
+    label: "WHO",
+    heading: "Big-firm training. Local understanding.",
+    body: "KB Legal's founder, Kamla Besançon, is a corporate lawyer with a broad corporate and securities practice. She has a specific focus on mergers and acquisitions and regularly advises clients on joint ventures, corporate structuring, corporate governance and board room dynamics.",
+  },
+  {
+    id: "what",
+    index: "02",
+    label: "WHAT",
+    heading: "Corporate law, exclusively.",
+    body: "At KB Legal we are not generalists. We focus exclusively on our expertise: corporate law. To safeguard the quality, focus, responsiveness and integrity KB Legal stands for, we are selective about the matters we undertake.",
+  },
+  {
+    id: "why",
+    index: "03",
+    label: "WHY",
+    heading: (
+      <>
+        Bigger may be good, but we believe{" "}
+        <em className="font-normal italic">smarter is better.</em>
+      </>
+    ),
+    body: "KB Legal provides the quality and experience of a large corporate transactional firm in a boutique setting. Because each client gets the attention of a highly specialized partner, advice is prompt, thorough, pragmatic and cost efficient.",
+  },
+];
+
+const experience = [
+  {
+    value: "USD 4.5bn",
+    summary: "Tele Atlas on the public offer made by TomTom",
+    tag: "PUBLIC M&A · AMSTERDAM",
+  },
+  {
+    value: "USD 33.8bn",
+    summary:
+      "Arcelor, as local Dutch counsel, on the public offer made by Mittal Steel",
+    tag: "PUBLIC M&A · AMSTERDAM",
+  },
+  {
+    value: "Acquisition",
+    summary:
+      "Execujet Aviation Group on its acquisition of TLC Aviation Corporation, St. Maarten",
+    tag: "PRIVATE M&A · SINT MAARTEN",
+  },
+  {
+    value: "Restructuring",
+    summary:
+      "GEBE on the division of its shares and the formation of utility companies in Saba and St. Eustatius",
+    tag: "STRUCTURING · DUTCH CARIBBEAN",
+  },
+];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "LegalService",
+  "@id": `${site.url}/#organization`,
+  name: site.name,
+  url: site.url,
+  logo: `${site.url}/kb-legal-logo-color.svg`,
+  image: `${site.url}/opengraph-image`,
+  description: site.description,
+  email: site.email,
+  telephone: "+1-721-542-4171",
+  priceRange: "$$",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: site.address.street,
+    addressLocality: site.address.city,
+    addressCountry: site.address.countryCode,
+  },
+  areaServed: ["Sint Maarten", "Dutch Caribbean", "Caribbean Netherlands"],
+  knowsAbout: [
+    "Corporate law",
+    "Mergers and acquisitions",
+    "Joint ventures",
+    "Corporate structuring",
+    "Corporate governance",
+    "Securities law",
+  ],
+  openingHoursSpecification: {
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+    opens: "09:00",
+    closes: "18:00",
+  },
+  founder: {
+    "@type": "Person",
+    name: "Kamla Besançon",
+    jobTitle: "Founder, Corporate Lawyer",
+    alumniOf: ["Leiden University", "Columbia University"],
+  },
+};
+
+const eyebrow =
+  "m-0 flex items-center gap-3 font-mono text-[13px] tracking-[0.16em] text-muted";
+const sectionHeading =
+  "m-0 font-serif text-[clamp(30px,3.2vw,42px)] leading-[1.15] font-medium text-navy";
+const textLink =
+  "border-b border-current pt-2.5 pb-0.5 text-base font-medium no-underline";
+const primaryButton =
+  "inline-flex items-center gap-2.5 rounded-[2px] bg-navy text-base font-medium text-white no-underline hover:text-white";
+
+function Rule() {
+  return <span className="inline-block h-0.5 w-7 bg-sage" />;
+}
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
+        }}
+      />
+      <SiteHeader />
+
+      <main className="w-full bg-ivory">
+        {/* Hero */}
+        <section id="top" className="bg-ivory">
+          <div className="mx-auto flex max-w-[1240px] flex-wrap items-end gap-16 px-6 pt-24 pb-[88px]">
+            <div className="min-w-0 flex-[999_1_560px]">
+              <p className="m-0 mb-7 flex items-center gap-3 font-mono text-[13px] tracking-[0.14em] text-muted uppercase">
+                <Rule />
+                Boutique corporate law firm · Sint Maarten, Dutch Caribbean
+              </p>
+              <h1 className="m-0 font-serif text-[clamp(42px,5.6vw,78px)] leading-[1.04] font-medium tracking-[-0.02em] text-navy">
+                We do one thing, and we do it well –{" "}
+                <em className="font-normal italic">corporate law.</em>
+              </h1>
+              <p className="mt-8 mb-0 max-w-[620px] text-[19px] leading-[1.6] text-body">
+                KB Legal is a boutique law firm in the Dutch Caribbean. We
+                provide highly specialized corporate legal support and believe
+                in a personal, efficient way of practicing law: partner
+                experience and expertise, dedicated to each client, at
+                manageable rates.
+              </p>
+              <div className="mt-10 flex flex-wrap gap-4">
+                <a href="#book" className={`${primaryButton} px-7 py-4`}>
+                  <CalendarIcon />
+                  Book a consultation
+                </a>
+                <a
+                  href={`mailto:${site.email}`}
+                  className="inline-flex items-center gap-2.5 rounded-[2px] border border-navy bg-transparent px-[27px] py-[15px] text-base font-medium text-navy no-underline hover:text-navy"
+                >
+                  <MailIcon />
+                  Or send an email
+                </a>
+              </div>
+            </div>
+
+            {/* Credentials panel, framed like the logo */}
+            <aside aria-label="Credentials" className="min-w-0 flex-[1_1_340px]">
+              <div className="h-[22px] border-[1.5px] border-b-0 border-navy" />
+              <div className="bg-navy px-8 pt-8 pb-9 text-white">
+                <p className="m-0 mb-6 font-mono text-xs tracking-[0.16em] text-sage">
+                  AT A GLANCE
+                </p>
+                <dl className="m-0 flex flex-col gap-[22px]">
+                  {credentials.map((item, i) => (
+                    <div
+                      key={item.title}
+                      className={`flex flex-col gap-1 ${
+                        i < credentials.length - 1
+                          ? "border-b border-white/14 pb-5"
+                          : ""
+                      }`}
+                    >
+                      <dt className="font-serif text-[26px] leading-[1.2]">
+                        {item.title}
+                      </dt>
+                      <dd className="m-0 text-[15px] text-mist">
+                        {item.detail}
+                      </dd>
+                    </div>
+                  ))}
+                </dl>
+              </div>
+            </aside>
+          </div>
+        </section>
+
+        {/* Who / What / Why */}
+        <section
+          aria-label="About KB Legal"
+          className="border-y border-line bg-sand"
+        >
+          <div className="mx-auto max-w-[1240px] px-6 pt-6 pb-8">
+            {pillars.map((pillar, i) => (
+              <article
+                key={pillar.id}
+                id={pillar.id}
+                className={`flex flex-wrap gap-x-16 gap-y-6 py-16 ${
+                  i < pillars.length - 1 ? "border-b border-line-strong" : ""
+                }`}
+              >
+                <div className="flex flex-[1_1_220px] flex-col gap-2.5">
+                  <span className="font-mono text-[13px] text-muted">
+                    {pillar.index}
+                  </span>
+                  <span className="font-mono text-[15px] font-medium tracking-[0.18em] text-navy">
+                    {pillar.label}
+                  </span>
+                  <Rule />
+                </div>
+                <div className="min-w-0 max-w-[760px] flex-[999_1_560px]">
+                  <h2 className={`${sectionHeading} mb-5 tracking-[-0.01em]`}>
+                    {pillar.heading}
+                  </h2>
+                  <p className="m-0 mb-6 text-body">{pillar.body}</p>
+                  <a href={`#${pillar.id}`} className={textLink}>
+                    Read more →
+                  </a>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        {/* Selected experience */}
+        <section
+          id="experience"
+          aria-labelledby="experience-heading"
+          className="bg-ivory"
+        >
+          <div className="mx-auto max-w-[1240px] px-6 py-[104px]">
+            <div className="mb-12 flex flex-wrap items-end justify-between gap-6">
+              <div>
+                <p className={`${eyebrow} mb-4`}>
+                  <Rule />
+                  SELECTED EXPERIENCE
+                </p>
+                <h2 id="experience-heading" className={sectionHeading}>
+                  From Saba to Euronext Amsterdam.
+                </h2>
+              </div>
+              <a href="#what" className={textLink}>
+                View all experience →
+              </a>
+            </div>
+
+            <ul className="m-0 grid list-none grid-cols-[repeat(auto-fit,minmax(260px,1fr))] gap-6 p-0">
+              {experience.map((item) => (
+                <li key={item.summary} className="flex flex-col">
+                  <div className="h-4 border-[1.5px] border-b-0 border-navy" />
+                  <div className="flex grow flex-col gap-3.5 border border-t-0 border-line bg-white px-6 pt-6 pb-7">
+                    <span className="font-mono text-[22px] text-navy">
+                      {item.value}
+                    </span>
+                    <span className="text-base leading-normal text-body">
+                      {item.summary}
+                    </span>
+                    <span className="mt-auto font-mono text-xs tracking-[0.12em] text-muted">
+                      {item.tag}
+                    </span>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        {/* Closing CTA */}
+        <section
+          id="where"
+          aria-labelledby="where-heading"
+          className="border-t border-line-cta bg-sand-deep"
+        >
+          <div className="mx-auto flex max-w-[1240px] flex-wrap items-end justify-between gap-x-16 gap-y-12 px-6 py-24">
+            <div className="min-w-0 max-w-[720px] flex-[999_1_520px]">
+              <p className={`${eyebrow} mb-4`}>
+                <Rule />
+                WHERE
+              </p>
+              <h2
+                id="where-heading"
+                className="m-0 mb-5 font-serif text-[clamp(36px,4.2vw,56px)] leading-[1.08] font-medium tracking-[-0.01em] text-navy"
+              >
+                Tell us about your matter.
+              </h2>
+              <p className="m-0 text-lg text-body">
+                We are selective about the work we take on, so that every client
+                receives our full attention. If you are considering a
+                transaction, a restructuring or a governance question in the
+                Dutch Caribbean, we would be glad to hear from you.
+              </p>
+            </div>
+            <div id="book" className="flex flex-[1_1_300px] flex-col gap-3">
+              <a
+                href={`mailto:${site.email}?subject=${encodeURIComponent("Consultation request")}`}
+                className={`${primaryButton} justify-center px-7 py-[18px]`}
+              >
+                <CalendarIcon />
+                Book a consultation
+              </a>
+              <div className="flex flex-wrap justify-center gap-x-6 gap-y-1">
+                <a
+                  href={`mailto:${site.email}`}
+                  className="inline-flex items-center gap-2 py-3 text-[15px] text-navy no-underline"
+                >
+                  <MailIcon size={17} />
+                  Email
+                </a>
+                <a
+                  href={site.phoneHref}
+                  className="inline-flex items-center gap-2 py-3 text-[15px] text-navy no-underline"
+                >
+                  <PhoneIcon size={17} />
+                  {site.phone}
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
       </main>
-    </div>
+
+      <SiteFooter />
+    </>
   );
 }
