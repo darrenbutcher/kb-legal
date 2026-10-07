@@ -168,11 +168,8 @@ export default function Home() {
                 className="hero-fade mt-6 mb-0 max-w-[620px] text-[19px] leading-[1.6] text-body"
                 style={{ "--delay": "750ms" } as CSSProperties}
               >
-                KB Legal is a boutique law firm in the Dutch Caribbean. We
-                provide highly specialized corporate legal support and believe
-                in a personal, efficient way of practicing law: partner
-                experience and expertise, dedicated to each client, at
-                manageable rates.
+                Highly specialized corporate legal support, with partner
+                experience dedicated to each client, at manageable rates.
               </p>
               <div
                 className="hero-fade mt-8 flex flex-wrap gap-4"
