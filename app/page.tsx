@@ -159,20 +159,20 @@ export default function Home() {
         <section id="top" className="bg-ivory">
           <div className="mx-auto flex max-w-[1240px] flex-wrap items-start gap-16 px-6 pt-6 pb-20 md:pt-8">
             <div className="min-w-0 flex-[999_1_560px]">
-              <p className="hero-fade m-0 mb-5 flex items-center gap-3 font-mono text-[13px] tracking-[0.14em] text-muted uppercase">
+              <p className="hero-fade m-0 mb-7 flex items-center gap-3 font-mono text-[13px] tracking-[0.14em] text-muted uppercase">
                 <Rule />
                 Boutique corporate law firm · Sint Maarten, Dutch Caribbean
               </p>
-              <HeroHeading className="m-0 font-serif text-[clamp(42px,5.6vw,78px)] leading-[1.04] font-medium tracking-[-0.02em] text-navy" />
+              <HeroHeading className="m-0 font-serif text-[clamp(42px,5.6vw,78px)] leading-[1.08] font-medium tracking-[-0.02em] text-navy" />
               <p
-                className="hero-fade mt-6 mb-0 max-w-[620px] text-[19px] leading-[1.6] text-body"
+                className="hero-fade mt-8 mb-0 max-w-[620px] text-[19px] leading-[1.7] text-body"
                 style={{ "--delay": "750ms" } as CSSProperties}
               >
                 Highly specialized corporate legal support, with partner
                 experience dedicated to each client, at manageable rates.
               </p>
               <div
-                className="hero-fade mt-8 flex flex-wrap gap-4"
+                className="hero-fade mt-11 flex flex-wrap gap-4"
                 style={{ "--delay": "900ms" } as CSSProperties}
               >
                 <a href="#book" className={`${primaryButton} px-7 py-4`}>
