@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { nav, site } from "../_lib/site";
 import { CalendarIcon } from "./icons";
 import { KbLogo } from "./kb-logo";
@@ -10,6 +10,17 @@ import { KbLogo } from "./kb-logo";
 export function SiteHeader() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
+  const [swinging, setSwinging] = useState(false);
+  const pointerOnLogo = useRef(false);
+
+  const startSwing = () => {
+    pointerOnLogo.current = true;
+    setSwinging(true);
+  };
+  // Let the beam finish its current cycle and come to rest level.
+  const releaseSwing = () => {
+    pointerOnLogo.current = false;
+  };
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 0);
@@ -30,9 +41,19 @@ export function SiteHeader() {
         <Link
           href="/"
           aria-label="KB Legal home"
-          className="kb-logo-link flex items-center rounded-md"
+          className="flex items-center rounded-md"
+          onMouseEnter={startSwing}
+          onMouseLeave={releaseSwing}
+          onFocus={startSwing}
+          onBlur={releaseSwing}
         >
-          <KbLogo className="block size-20" />
+          <KbLogo
+            className="block size-20"
+            swinging={swinging}
+            onSwingCycle={() => {
+              if (!pointerOnLogo.current) setSwinging(false);
+            }}
+          />
         </Link>
         <nav
           aria-label="Main"

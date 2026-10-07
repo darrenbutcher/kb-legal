@@ -1,7 +1,16 @@
-// KB Legal mark as inline SVG so the frame's two bars can be animated.
-// Hovering or focusing the surrounding link tips both bars like a balance
-// beam; see `.kb-logo` in globals.css.
-export function KbLogo({ className = "" }: { className?: string }) {
+import type { AnimationEventHandler } from "react";
+
+// KB Legal mark as inline SVG so the frame's top bar can swing like the beam
+// of a balance scale while `swinging` is set; see `.kb-logo-beam` in globals.css.
+export function KbLogo({
+  className = "",
+  swinging = false,
+  onSwingCycle,
+}: {
+  className?: string;
+  swinging?: boolean;
+  onSwingCycle?: AnimationEventHandler<SVGPathElement>;
+}) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -11,10 +20,12 @@ export function KbLogo({ className = "" }: { className?: string }) {
       className={`kb-logo overflow-visible ${className}`}
     >
       <g fill="#293580">
-        <path className="kb-logo-bar kb-logo-bar-top"
+        <path
+          className={`kb-logo-beam ${swinging ? "is-swinging" : ""}`}
+          onAnimationIteration={onSwingCycle}
           d="M62.45,28.87v208.15c-2.32-3.69-4.8-5.81-8.55-5.73-3.78.07-6.12,2.55-8.52,5.56V15.21h390.4v220.41c-2.49-1.32-5.2-3.5-8.24-4.18-3.46-.77-6.19,1.71-8.46,4.82-.3-.84-.62-1.32-.62-1.8.07-40.93.18-81.86.24-122.8.04-25.95,0-51.91,0-77.86,0-5.08,0-5.05-4.97-5.04-43.08.04-86.16.1-129.24.1-72.16.01-144.33,0-216.49,0-1.74,0-3.47,0-5.54,0Z"
         />
-        <path className="kb-logo-bar kb-logo-bar-bottom"
+        <path
           d="M447.33,404.67c-16.16-.09-32.32-.14-48.47-.14-36.03,0-72.06.03-108.08.15h0s-3.26,0-3.26,0h-21.81v-.05c-17.16-.14-34.32-.17-51.49-.16-49.94.03-99.89.09-149.83.19-2.11,0-3.25-.38-3.25-2.86.03-28.99.01-57.97-.05-86.96-.04-18.61-.14-37.21-.33-55.82-.01-1.45-.62-3.07-1.43-4.29-2.17-3.26-5.6-3.36-8.96-2.68-3.31.66-5.21,2.93-5.58,6.33-.18,1.65-.38,3.3-.38,4.96-.02,48.58-.02,97.16-.01,145.74,0,1.27-.01,2.56.18,3.81.8,5.14,3.5,7.47,8.74,7.58,2.35.05,4.7.05,7.05.05,69.14-.02,138.28-.04,207.42-.11.32,0,.6.03.85.07h18.13v.02c.13,0,.26-.01.4-.01,43.09.09,86.18.07,129.27.06,10.28,0,20.57,0,30.85-.11,5.01-.06,8.31-3.34,8.33-7.95.02-4.6-3.24-7.79-8.28-7.82Z"
         />
         <path

@@ -138,26 +138,17 @@
     transform: none;
   }
 
-  /* Logo "balance": on hover both frame bars tip clockwise together (left
-     up, right down), each pivoting on the middle of its horizontal stroke,
-     and settle with a slight overshoot like a scale coming to rest. */
-  .kb-logo-bar {
+  /* Logo balance: while the pointer rests on the logo, the frame's top bar
+     swings slowly on its centre like the beam of a scale (left up, level,
+     right up, level). Each cycle starts and ends level, so when the pointer
+     leaves the header lets the current cycle finish instead of snapping. */
+  .kb-logo-beam {
     transform-box: fill-box;
-    transition: transform 0.9s cubic-bezier(0.34, 1.7, 0.5, 1);
-  }
-
-  .kb-logo-bar-top {
     transform-origin: 50% 0;
   }
 
-  .kb-logo-bar-bottom {
-    transform-origin: 50% 100%;
-    transition-delay: 60ms;
-  }
-
-  .kb-logo-link:hover .kb-logo-bar,
-  .kb-logo-link:focus-visible .kb-logo-bar {
-    transform: rotate(4deg);
+  .kb-logo-beam.is-swinging {
+    animation: kb-balance 4.4s infinite;
   }
 
   .lift {
@@ -169,6 +160,22 @@
   .lift:hover {
     transform: translateY(-3px);
     box-shadow: 0 14px 30px -18px rgb(23 34 80 / 0.35);
+  }
+}
+
+@keyframes kb-balance {
+  0%,
+  100% {
+    transform: rotate(0deg);
+    animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1);
+  }
+  25% {
+    transform: rotate(4.5deg);
+    animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1);
+  }
+  75% {
+    transform: rotate(-4.5deg);
+    animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1);
   }
 }
 
